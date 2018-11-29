@@ -29,6 +29,7 @@ pipeline {
          post {
            always {
               junit 'gameoflife-web/target/surefire-reports/*.xml'
+	      junit 'gameoflife-core/target/surefire-reports/*.xml'
            }
          }
       }
