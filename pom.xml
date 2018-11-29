@@ -499,4 +499,15 @@
             </reporting>
         </profile>
     </profiles>
+    <distributionManagement>
+       <repository>
+          <name>maven-releases</name>
+          <url>http://192.168.56.105:8081/repository/maven-releases/</url>
+       </repository>
+
+       <snapshotRepository>
+          <name>maven-snapshots</name>
+          <url>http://192.168.56.105:8081/repository/maven-snapshots/</url>	
+       </snapshotRepository>
+    </distributionManagement>
 </project>
