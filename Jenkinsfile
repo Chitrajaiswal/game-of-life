@@ -5,6 +5,7 @@ pipeline {
     }
 
     stages{
+
       stage('SCM') {
          steps {
             git url: 'https://github.com/Chitrajaiswal/game-of-life.git'
@@ -21,6 +22,17 @@ pipeline {
            sh 'mvn sonar:sonar -Dsonar.host.url=http://192.168.56.107:9000'
         }
       }
+      stage('Test') {
+         steps {
+            sh 'mvn test'
+         }
+         post {
+           always {
+              junit 'target/surefire-reports/*.xml'
+           }
+         }
+      }
+
     }
 }    
 
