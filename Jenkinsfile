@@ -36,12 +36,12 @@ pipeline {
       }
       stage('Publish'){
          steps {
-      nexusArtifactUploader()
+             nexusArtifactUploader()
          }
       }
 
     }
-}    
+    
 nexusArtifactUploader(
     nexusVersion: 'nexus3',
     protocol: 'http',
@@ -56,3 +56,4 @@ nexusArtifactUploader(
          type: 'war']
     ]
  )
+}
