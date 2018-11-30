@@ -16,13 +16,13 @@ node {
 
     stage('Publish'){
        nexusArtifactUploader(
-       credentialsId: 'nexus'
-       groupId: 'com.wakaleo.gameoflife'
-       nexusUrl: '192.168.56.105:8081'
-       nexusVersion: 'nexus3'
-       protocol: 'http'
-       repository: 'maven-releases'
-       version: '1.3'
-       }
+         credentialsId: 'nexus'
+         groupId: 'com.wakaleo.gameoflife'
+         nexusUrl: '192.168.56.105:8081'
+         nexusVersion: 'nexus3'
+         protocol: 'http'
+         repository: 'maven-releases'
+         version: '1.3'
        )
+   }
 }
