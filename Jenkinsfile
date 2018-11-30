@@ -15,7 +15,7 @@ pipeline {
       stage ('Build'){
         steps{
 	  echo 'Maven Build'
-          sh 'mvn -f pom.xml clean compile'
+          sh 'mvn -f pom.xml clean install'
         }
       }
       stage ('SonarQube'){
