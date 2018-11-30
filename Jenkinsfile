@@ -13,11 +13,6 @@ node {
     stage ('SonarQube'){
        sh 'mvn sonar:sonar -Dsonar.host.url=http://192.168.56.107:9000'
     }
-#
-#    stage('Test') {
-#      junit 'gameoflife-web/target/surefire-reports/*.xml'
-#      junit 'gameoflife-core/target/surefire-reports/*.xml'
-#    }
 
     stage('Publish'){
       nexusArtifactUploader {
