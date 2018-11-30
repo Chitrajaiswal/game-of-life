@@ -7,11 +7,7 @@ node {
 
     stage ('Build'){
       echo 'Maven Build'
-      sh 'mvn -f pom.xml clean compile'
-    }
-
-    stage ('SonarQube'){
-       sh 'mvn sonar:sonar -Dsonar.host.url=http://192.168.56.107:9000'
+      sh 'mvn -f pom.xml clean package'
     }
 
     stage('Publish'){
