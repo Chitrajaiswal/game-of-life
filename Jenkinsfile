@@ -35,7 +35,9 @@ pipeline {
          }
       }
       stage('Publish'){
+         steps {
       nexusArtifactUploader()
+         }
       }
 
     }
