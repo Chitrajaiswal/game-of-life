@@ -36,24 +36,25 @@ pipeline {
       }
       stage('Publish'){
          steps {
-             nexusArtifactUploader()
-         }
+            nexusArtifactUploader {
+              nexusVersion('nexus3')
+              protocol('http')
+              nexusUrl('192.168.56.105:8081')
+              groupId('com.wakaleo.gameoflife')
+              version('1.2')
+              repository('maven-snapshots')
+              credentialsId('nexus')
+              artifact {
+                artifactId('gameoflife')
+                type('war')
+                classifier('debug')
+                file('gameoflife-web/target/gameoflife.war')
+              }
+            }
+          }
+
       }
 
     }
     
-nexusArtifactUploader(
-    nexusVersion: 'nexus3',
-    protocol: 'http',
-    nexusUrl: '192.168.56.105:8081',
-    groupId: 'com.wakaleo.gameoflife',
-    version: 1.2,
-    repository: 'maven-snapshots',
-    credentialsId: 'nexus',
-    artifacts: [
-        [artifactId: gameoflife,
-         file: 'gameoflife-web/target/gameoflife.war',
-         type: 'war']
-    ]
- )
 }
