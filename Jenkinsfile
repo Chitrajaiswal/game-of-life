@@ -15,8 +15,10 @@ node {
     }
 
     stage('Publish'){
-      nexusArtifactUploader 
-      artifacts: [[artifactId: 'gameoflife', classifier: '', file: 'gameoflife-web/target/gameoflife.war', type: 'war']], 
+      nexusArtifactUploader(
+      artifacts: [
+      [artifactId: 'gameoflife', classifier: '', file: 'gameoflife-web/target/gameoflife.war', type: 'war']
+      ], 
       credentialsId: 'nexus', 
       groupId: 'com.wakaleo.gameoflife', 
       nexusUrl: '192.168.56.105:8081', 
@@ -24,5 +26,6 @@ node {
       protocol: 'http', 
       repository: 'maven-releases', 
       version: '1.3'  
+      )
     }
 }
