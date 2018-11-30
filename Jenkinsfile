@@ -15,7 +15,7 @@ pipeline {
       stage ('Build'){
         steps{
 	  echo 'Maven Build'
-          sh 'mvn -f pom.xml clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install'
+          sh 'mvn -f pom.xml clean install'
         }
       }
       stage ('SonarQube'){
