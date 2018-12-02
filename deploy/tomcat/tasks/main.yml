@@ -60,3 +60,4 @@
 
 - name: open browser with game link
   command: firefox http://192.168.56.103:8080/gameoflife
+  become_user: sele
