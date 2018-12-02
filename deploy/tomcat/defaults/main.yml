@@ -1,0 +1,5 @@
+---
+# defaults file for tomcat
+tomcat_version: 8
+tomcat_subversion: "8.5.35"
+java_version: "java-8-openjdk-amd64"

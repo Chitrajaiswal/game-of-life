@@ -1,0 +1,4 @@
+---
+- hosts: mavendeploy 
+  roles:
+     - {role: tomcat}

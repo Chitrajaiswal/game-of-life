@@ -1,0 +1,62 @@
+---
+# tasks file for tomcat
+- name: Update repositories cache and install "default-jdk" package
+  apt:
+    name: default-jdk 
+    update_cache: yes
+
+- name: install unzip required for unarchive module 
+  apt:
+    name: unzip
+    state: present
+
+- name: add user tomcat with group tomcat
+  user:
+    name: tomcat
+    shell: "/bin/false"
+    home: /opt/tomcat
+
+- name: ensure tomcat's home directory exists
+  file:
+    path: "{{ tomcat_home_dir }}"
+    owner: tomcat 
+    group: tomcat
+    mode: 0755
+    recurse: yes
+    state: directory
+
+- name: download and install tomcat
+  unarchive:
+    src: http://mirrors.estointernet.in/apache/tomcat/tomcat-{{ tomcat_version }}/v{{ tomcat_subversion }}/bin/apache-tomcat-{{ tomcat_subversion }}.zip 
+    dest: /opt/tomcat 
+    remote_src: yes
+    owner: tomcat
+    group: tomcat
+    mode: 0755
+
+- name: set java home 
+  shell: "echo $JAVA_HOME"
+  environment:
+    JAVA_HOME: "/usr/lib/jvm/{{ java_version }}/jre"
+    
+- name: make tomcat a systemd service
+  copy:
+    src: tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+  register: result
+  notify: tomcat_systemd
+
+- name: Ensure systemd is reloaded if tomcat.service has changed
+  shell: systemctl daemon-reload
+  when: result is changed 
+
+- name: deploy war file to tomcat server
+  copy:
+    src: /var/lib/jenkins/workspace/game_project/gameoflife-web/target/gameoflife.war 
+    dest: /opt/tomcat/apache-tomcat-8.5.35/webapps/ 
+    owner: tomcat
+    group: tomcat
+    mode: 0755
+
+- name: open browser with game link
+  command: firefox http://192.168.56.103:8080/gameoflife

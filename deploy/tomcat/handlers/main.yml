@@ -1,0 +1,20 @@
+---
+# handlers file for tomcat
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
+  listen: tomcat_systemd
+
+- name: enable tomcat
+  service:
+    name: tomcat
+    enabled: yes
+  listen: tomcat_systemd
+
+- name: restart tomcat
+  service:
+    name: tomcat
+    state: restarted
+  listen: tomcat_systemd
+
