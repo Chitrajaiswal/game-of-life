@@ -1,4 +1,4 @@
 ---
-- hosts: mavendeploy 
+- hosts: selenium 
   roles:
      - {role: tomcat}
