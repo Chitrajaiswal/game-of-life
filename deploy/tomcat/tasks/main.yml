@@ -44,7 +44,6 @@
     src: tomcat.service
     dest: /etc/systemd/system/tomcat.service
   register: result
-  notify: tomcat_systemd
 
 - name: Ensure systemd is reloaded if tomcat.service has changed
   shell: systemctl daemon-reload
@@ -57,7 +56,8 @@
     owner: tomcat
     group: tomcat
     mode: 0755
+  notify: tomcat_systemd
 
-- name: open browser with game link
-  command: firefox http://192.168.56.101:8080/gameoflife
-  become_user: sele
+#- name: open browser with game link
+#  command: firefox http://192.168.56.101:8080/gameoflife
+#  become_user: sele
