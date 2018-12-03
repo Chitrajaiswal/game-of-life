@@ -1,4 +1,5 @@
 ---
 - hosts: selenium 
+  become: yes
   roles:
      - {role: tomcat}
