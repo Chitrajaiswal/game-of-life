@@ -52,7 +52,7 @@ pipeline {
      }   
      stage('Deploy') {
        steps {
-         sh 'ansible-playbook /var/lib/jenkins/workspace/game_project/deploy/tomcat.yml'
+         sh 'sudo ansible-playbook /var/lib/jenkins/workspace/game_project/deploy/tomcat.yml'
        }
      }
      }
